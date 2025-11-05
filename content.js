@@ -66,7 +66,7 @@
           [
             "mmr_enabled","mmr_collapsed","mmr_position","mmr_showLegend",
             "mmr_centerOnClick","mmr_offsetTop","mmr_activeLayers",
-            "mmr_palette","mmr_intensity"
+            "mmr_palette","mmr_intensity","mmr_width","mmr_heightVh"
           ],
           (res) => {
             state.enabled = res?.mmr_enabled ?? true;
@@ -82,6 +82,10 @@
             state.paletteOverrides = res?.mmr_palette || {};
             state.intensity = { ...state.intensity, ...(res?.mmr_intensity || {}) };
             resolve();
+            state.uiWidth = Number(res?.mmr_width ?? 180);
+            state.uiHeightVh = Number(res?.mmr_heightVh ?? 80);
+            state.container.style.width = `${state.uiWidth}px`;
+            state.container.style.height = `${state.uiHeightVh}vh`;
           }
         );
       } catch {
@@ -140,6 +144,16 @@
       }
       if (needsViewport) {
         requestAnimationFrame(updateViewportRect);
+      }
+      if (changes.mmr_width) {
+        state.uiWidth = Number(changes.mmr_width.newValue || 180);
+        if (state.container) state.container.style.width = `${state.uiWidth}px`;
+        requestAnimationFrame(() => { resizeCanvas(); redrawMinimap(); updateViewportRect(); });
+      }
+      if (changes.mmr_heightVh) {
+        state.uiHeightVh = Number(changes.mmr_heightVh.newValue || 80);
+        if (state.container) state.container.style.height = `${state.uiHeightVh}vh`;
+        requestAnimationFrame(() => { resizeCanvas(); redrawMinimap(); updateViewportRect(); });
       }
     });
   };

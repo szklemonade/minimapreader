@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimap Reader – Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="opt-header">
+    <h1>Minimap Reader – 詳細設定</h1>
+    <div class="opt-actions">
+      <button id="btnExport">設定をエクスポート</button>
+      <label class="btnFile">
+        設定をインポート
+        <input type="file" id="fileImport" accept="application/json">
+      </label>
+      <button id="btnReset">すべて既定値にリセット</button>
+    </div>
+  </header>
+
+  <main class="opt-main">
+    <section class="card">
+      <h2>基本設定</h2>
+      <div class="grid">
+        <label><input type="checkbox" id="enabled"> 有効（Enabled）</label>
+        <label><input type="checkbox" id="collapsed"> コンパクト幅（Collapsed）</label>
+        <label><input type="checkbox" id="showLegend"> 凡例表示（Legend）</label>
+        <label><input type="checkbox" id="centerOnClick"> クリック時に中央寄せ</label>
+        <label>固定ヘッダのオフセット（px）
+          <input type="number" id="offsetTop" min="0" max="300" step="1" placeholder="0">
+        </label>
+        <label>ミニマップ幅（px）
+          <input type="number" id="width" min="100" max="400" step="10" placeholder="180">
+        </label>
+        <label>ミニマップ高さ（vh）
+          <input type="number" id="heightVh" min="40" max="100" step="5" placeholder="80">
+        </label>
+        <div>
+          <button id="resetPosition">UI位置を既定に戻す</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>レイヤ（ON/OFF）</h2>
+      <div class="grid grid-3">
+        <label><input type="checkbox" data-layer="heading"> Heading</label>
+        <label><input type="checkbox" data-layer="text"> Text</label>
+        <label><input type="checkbox" data-layer="code"> Code</label>
+        <label><input type="checkbox" data-layer="media"> Media</label>
+        <label><input type="checkbox" data-layer="table"> Table</label>
+        <label><input type="checkbox" data-layer="quote"> Quote</label>
+        <label><input type="checkbox" data-layer="section"> Section</label>
+        <label><input type="checkbox" data-layer="link"> Link</label>
+        <label><input type="checkbox" data-layer="form"> Form</label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>色と強度（詳細調整）</h2>
+      <div class="grid grid-3">
+        <label>Heading色 <input type="color" data-color="heading"></label>
+        <label>Text色 <input type="color" data-color="text"></label>
+        <label>Code色 <input type="color" data-color="code"></label>
+        <label>Media色 <input type="color" data-color="media"></label>
+        <label>Table色 <input type="color" data-color="table"></label>
+        <label>Quote色 <input type="color" data-color="quote"></label>
+        <label>Section色 <input type="color" data-color="section"></label>
+        <label>Link色 <input type="color" data-color="link"></label>
+        <label>Form色 <input type="color" data-color="form"></label>
+      </div>
+      <div class="grid grid-3">
+        <label>Heading強度 <input type="range" data-intensity="heading" min="0.5" max="2.0" step="0.1"></label>
+        <label>Text強度 <input type="range" data-intensity="text" min="0.5" max="2.0" step="0.1"></label>
+        <label>Code強度 <input type="range" data-intensity="code" min="0.5" max="2.0" step="0.1"></label>
+        <label>Media強度 <input type="range" data-intensity="media" min="0.5" max="2.0" step="0.1"></label>
+        <label>Table強度 <input type="range" data-intensity="table" min="0.5" max="2.0" step="0.1"></label>
+        <label>Quote強度 <input type="range" data-intensity="quote" min="0.5" max="2.0" step="0.1"></label>
+        <label>Section強度 <input type="range" data-intensity="section" min="0.5" max="2.0" step="0.1"></label>
+        <label>Link強度 <input type="range" data-intensity="link" min="0.5" max="2.0" step="0.1"></label>
+        <label>Form強度 <input type="range" data-intensity="form" min="0.5" max="2.0" step="0.1"></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>プリセット</h2>
+      <div class="grid grid-3">
+        <button class="preset" data-preset="doc">ドキュメント向け</button>
+        <button class="preset" data-preset="gallery">ギャラリー向け</button>
+        <button class="preset" data-preset="code">コード向け</button>
+      </div>
+      <p class="note">プリセットはレイヤのON/OFF・強度・色の一部を切り替えます。適用後はお好みで微調整してください。</p>
+    </section>
+
+    <section class="card">
+      <h2>ショートカット（参照）</h2>
+      <ul class="shortcuts">
+        <li>Alt+M … 表示/非表示</li>
+        <li>Alt+Shift+C … コンパクト幅（Collapse/Expand）</li>
+        <li>Alt+Shift+L … 凡例表示/非表示</li>
+      </ul>
+      <p class="note">ショートカットは固定です（設定からは変更しません）。</p>
+    </section>
+  </main>
+
+  <footer class="opt-footer">
+    <span id="status">設定は自動保存されます</span>
+  </footer>
+
+  <script src="options.js"></script>
+</body>
+</html>
