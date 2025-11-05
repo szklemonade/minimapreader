@@ -135,3 +135,17 @@
 
   document.addEventListener("DOMContentLoaded", init);
 })();
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("openOptions");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      try {
+        chrome.runtime.openOptionsPage();
+      } catch (e) {
+        // フォールバック（古い環境向け）
+        const url = chrome.runtime.getURL("options.html");
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+    });
+  }
+});

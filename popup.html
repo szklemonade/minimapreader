@@ -80,13 +80,8 @@
 
   <script src="popup.js"></script>
   
-  <div class="row">
-    <button id="openOptions">詳細設定（オプション）を開く</button>
-  </div>
-  <script>
-    document.getElementById('openOptions')?.addEventListener('click', () => {
-      try { chrome.runtime.openOptionsPage(); } catch {}
-    });
-  </script>
+<div class="row">
+  <button id="openOptions" type="button">詳細設定（オプション）を開く</button>
+</div>
 </body>
 </html>
