@@ -1,0 +1,109 @@
+/* Visual Minimap styles (v0.3.1) */
+.mmr-container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 180px;
+  height: 80vh;
+  z-index: 2147483647;
+  background: rgba(15, 17, 20, 0.92);
+  color: #eee;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  display: none;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.mmr-container.visible { display: flex; flex-direction: column; }
+.mmr-container.collapsed { width: 110px; }
+.mmr-container.mmr-moving { opacity: 0.96; cursor: move; }
+
+/* Header */
+.mmr-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: move;
+}
+.mmr-title { font-weight: 600; letter-spacing: 0.2px; }
+.mmr-header .mmr-btn { margin-left: auto; display: inline-flex; gap: 6px; }
+.mmr-btn button {
+  background: transparent;
+  color: #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.mmr-btn button:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+/* Canvas area */
+.mmr-canvasWrap {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+.mmr-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+}
+
+/* Viewport rectangle overlay */
+.mmr-viewportRect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border: 1px solid rgba(147, 197, 253, 0.8);
+  background: rgba(147, 197, 253, 0.24);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Legend */
+.mmr-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 6px 10px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  color: #cbd5e1;
+}
+.mmr-legend.hidden { display: none; }
+.mmr-legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.mmr-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  display: inline-block;
+  opacity: 0.9;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.mmr-percent {
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+  margin-left: 4px;
+}
+
+/* Small screen */
+@media (max-width: 768px) {
+  .mmr-container.visible { width: 110px; }
+  .mmr-legend { display: none; } /* 狭い画面では凡例を自動的に隠す */
+}

@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Minimap Reader",
+  "version": "0.4.0",
+  "description": "ページ全体の“俯瞰ミニマップ”を種類別に色分け表示。位置把握と高速ジャンプを提供します。",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Minimap Reader"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
