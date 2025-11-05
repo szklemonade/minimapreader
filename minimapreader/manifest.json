@@ -19,5 +19,12 @@
       "css": ["styles.css"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "icons": {
+  "16": "minimapreader-16.png",
+  "32": "minimapreader-32.png",
+  "48": "minimapreader-48.png",
+  "128": "minimapreader-128.png"
+  }
+
 }
